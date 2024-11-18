@@ -1,10 +1,9 @@
 //
 //  ScannerView.swift
-//  QRScanner
+//  QrCodePrj
 //
-//  Created by Aybars Acar on 17/4/2023.
+//  Created by SAM on R 6/11/18.
 //
-
 import SwiftUI
 import AVKit
 
@@ -16,10 +15,8 @@ struct ScannerView: View {
   @State private var session = AVCaptureSession()
   @State private var cameraPermission: Permission = .idle
   
-  // QR Scanner AV Output
   @State private var qrOutput = AVCaptureMetadataOutput()
   
-  // Error properties
   @State private var errorMessage = ""
   @State private var showError = false
   
@@ -35,7 +32,7 @@ struct ScannerView: View {
       } label: {
         Image(systemName: "xmark")
           .font(.title3)
-          .foregroundColor(Color.theme.main)
+          .foregroundColor(Color("Blue"))
       }
       .frame(maxWidth: .infinity, alignment: .leading)
       
@@ -65,10 +62,9 @@ struct ScannerView: View {
         }
         .frame(width: size.width, height: size.width)
 
-        // Scanner Animation
         .overlay(alignment: .top, content: {
           Rectangle()
-            .fill(Color.theme.main)
+            .fill(Color("Blue"))
             .frame(height: 2.5)
             .shadow(color: .black.opacity(0.8), radius: 8, x: 0, y: scanning ? 15 : -15)
             .offset(y: scanning ? size.width : 0)
@@ -100,7 +96,6 @@ struct ScannerView: View {
       if cameraPermission == .denied {
         Button("Settings") {
           if let settingsURL = URL(string: UIApplication.openSettingsURLString) {
-            // opening app settings
             openURL(settingsURL)
           }
         }
@@ -114,13 +109,10 @@ struct ScannerView: View {
       if let scannedCode = newValue {
         code = scannedCode
         
-        // when the first code is available stop scanning
         session.stopRunning()
         
-        // stop scanning animation
         deActivateScannerAnimation()
         
-        // clearing the data on delegate
         qrDelegate.clearScannedCode()
       }
     }
@@ -147,19 +139,15 @@ private extension ScannerView {
     }
   }
   
-  /// Checking Camera Permissions
   func checkCameraPermission() {
     Task {
       switch AVCaptureDevice.authorizationStatus(for: .video) {
         
       case .notDetermined:
-        // request camera permission
         if await AVCaptureDevice.requestAccess(for: .video) {
-          // permission granted
           cameraPermission = .approved
           setupCamera()
         } else {
-          // permission denied
           cameraPermission = .denied
           presentError("Please provide access to camera for scanning qr codes")
         }
@@ -171,10 +159,8 @@ private extension ScannerView {
       case .authorized:
         cameraPermission = .approved
         if session.inputs.isEmpty {
-          // new setup
           setupCamera()
         } else {
-          // already existing one
           session.startRunning()
         }
         
@@ -184,39 +170,30 @@ private extension ScannerView {
     }
   }
   
-  /// Setting Up Camera
   func setupCamera() {
     do {
-      // Finding Back Camera
       guard let device = AVCaptureDevice.DiscoverySession(deviceTypes: [.builtInWideAngleCamera], mediaType: .video, position: .back).devices.first else {
         presentError("Camera is not working!")
         return
       }
       
-      // Camera Input
       let input = try AVCaptureDeviceInput(device: device)
       
-      // for extra safety
-      // Checking whetehr input & outpu can be added to the session
       guard session.canAddInput(input), session.canAddOutput(qrOutput) else {
         presentError("Camera is not working!")
         return
       }
       
-      // adding input and output to Camera Session
       session.beginConfiguration()
       session.addInput(input)
       session.addOutput(qrOutput)
       
-      // setting output config to read QR codes
       qrOutput.metadataObjectTypes = [.qr]
       
-      // adding delegate to retrieve teh fetched qr code from camera
       qrOutput.setMetadataObjectsDelegate(qrDelegate, queue: .main)
       
       session.commitConfiguration()
       
-      // Note sesion must be started on Background thread
       DispatchQueue.global(qos: .background).async {
         session.startRunning()
       }
@@ -227,7 +204,6 @@ private extension ScannerView {
     }
   }
   
-  /// Presenting Error
   func presentError(_ message: String) {
     errorMessage = message
     showError.toggle()

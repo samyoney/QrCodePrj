@@ -2,7 +2,7 @@
 //  QrCodePrjApp.swift
 //  QrCodePrj
 //
-//  Created by HS-Macbook on R 6/11/18.
+//  Created by SAM on R 6/11/18.
 //
 
 import SwiftUI

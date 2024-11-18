@@ -1,23 +1,20 @@
 //
 //  CameraView.swift
-//  QRScanner
+//  QrCodePrj
 //
-//  Created by Aybars Acar on 17/4/2023.
+//  Created by SAM on R 6/11/18.
 //
 
 import SwiftUI
 import AVKit
 
-/// Uses AVCaptureVideoPreviewLayer
 struct CameraView: UIViewRepresentable {
   
   var frameSize: CGSize
   
-  // camera session
   @Binding var session: AVCaptureSession
   
   func makeUIView(context: Context) -> UIView {
-    // define camer frame size
     let view = UIViewType(frame: CGRect(origin: .zero, size: frameSize))
     view.backgroundColor = .clear
     

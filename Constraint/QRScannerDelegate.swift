@@ -1,9 +1,10 @@
 //
 //  QRScannerDelegate.swift
-//  QRScanner
+//  QrCodePrj
 //
-//  Created by Aybars Acar on 8/5/2023.
+//  Created by SAM on R 6/11/18.
 //
+
 
 import SwiftUI
 import AVKit

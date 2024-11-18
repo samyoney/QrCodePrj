@@ -1,9 +1,10 @@
 //
 //  Permission.swift
-//  QRScanner
+//  QrCodePrj
 //
-//  Created by Aybars Acar on 17/4/2023.
+//  Created by SAM on R 6/11/18.
 //
+
 
 import Foundation
 
