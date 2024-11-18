@@ -56,7 +56,7 @@ struct ScannerView: View {
           ForEach(0...4, id: \.self) { index in
             RoundedRectangle(cornerRadius: 2, style: .circular)
               .trim(from: 0.61, to: 0.64)
-              .stroke(Color.theme.main, style: StrokeStyle(lineWidth: 5, lineCap: .round, lineJoin: .round))
+              .stroke(Color("Blue"), style: StrokeStyle(lineWidth: 5, lineCap: .round, lineJoin: .round))
               .rotationEffect(.degrees(90 * Double(index)))
           }
         }
