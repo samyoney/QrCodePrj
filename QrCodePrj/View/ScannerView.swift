@@ -20,7 +20,6 @@ struct ScannerView: View {
   @State private var errorMessage = ""
   @State private var showError = false
   
-  // Camera QR Output Deletage
   @State private var qrDelegate = QRScannerDelegate()
   
   @State private var code = ""
