@@ -8,27 +8,11 @@
 
 /* Begin PBXFileReference section */
 		440066CA2CEB6D6E005C532C /* QrCodePrj.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = QrCodePrj.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		440066E12CEB6E4A005C532C /* Permission.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Permission.swift; sourceTree = "<group>"; };
-		440066E22CEB6E59005C532C /* QRScannerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRScannerDelegate.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
-
-/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
-		440066E62CEB70F9005C532C /* Exceptions for "QrCodePrj" folder in "QrCodePrj" target */ = {
-			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
-			membershipExceptions = (
-				Constraint/Permission.swift,
-				Constraint/QRScannerDelegate.swift,
-			);
-			target = 440066C92CEB6D6E005C532C /* QrCodePrj */;
-		};
-/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		440066CC2CEB6D6E005C532C /* QrCodePrj */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			exceptions = (
-				440066E62CEB70F9005C532C /* Exceptions for "QrCodePrj" folder in "QrCodePrj" target */,
-			);
 			path = QrCodePrj;
 			sourceTree = "<group>";
 		};
@@ -48,7 +32,6 @@
 		440066C12CEB6D6E005C532C = {
 			isa = PBXGroup;
 			children = (
-				440066E02CEB6E29005C532C /* Constraint */,
 				440066CC2CEB6D6E005C532C /* QrCodePrj */,
 				440066CB2CEB6D6E005C532C /* Products */,
 			);
@@ -60,15 +43,6 @@
 				440066CA2CEB6D6E005C532C /* QrCodePrj.app */,
 			);
 			name = Products;
-			sourceTree = "<group>";
-		};
-		440066E02CEB6E29005C532C /* Constraint */ = {
-			isa = PBXGroup;
-			children = (
-				440066E22CEB6E59005C532C /* QRScannerDelegate.swift */,
-				440066E12CEB6E4A005C532C /* Permission.swift */,
-			);
-			path = Constraint;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
